@@ -51,7 +51,7 @@ Requirements: R 4.1+ with `dplyr`, `readr`, `ggplot2`, `scales`, `svglite`; Pyth
 | Ratio p90 / p10 | 6.51 |
 | Earners excluded from the histogram (outside Rs 10,000-Rs 10,000,000) | 13 |
 
-**Interpretation.** Earnings in KP rural cluster around Rs 158,000-Rs 200,000 but spread widely: the 90th percentile (Rs 456,000) is 6.51 times the 10th (Rs 70,000), with a long right tail (mean above median). The weighted median (Rs 187,200) is higher than the unweighted (Rs 180,000): hhweight undoes the oversampling of small districts, and earnings correlate positively with household weight (Spearman 0.05).
+**Interpretation:** In rural KP, the weighted median earner makes Rs 187,200 per year. Earnings differ greatly: the 90th percentile cutoff (Rs 456,000) is 6.51 times the 10th percentile cutoff (Rs 70,000). A few people earn much more, which creates a long right tail. The weighted median is slightly higher than the unweighted median (Rs 180,000) because survey weights correct for small districts being oversampled.
 
 ## Question 3: band table
 
@@ -71,19 +71,21 @@ Requirements: R 4.1+ with `dplyr`, `readr`, `ggplot2`, `scales`, `svglite`; Pyth
 "Thin" = fewer than 30 unweighted observations (hollow marker in the figure).
 Bands 25-29: Rs 245,584; 45-49: Rs 320,463; highest weighted mean: **50-54** (Rs 352,522).
 
-**Interpretation.** Mean earnings rise from Rs 141,017 at ages 15-19 to a peak of Rs 352,522 at 50-54, then fall to Rs 268,087 at 60-64. That is the classic experience profile: human capital accumulates, then flattens near retirement. But the age gain (2.5x from youngest to peak) is smaller than the 90th/10th percentile ratio (6.51), so people of the same age differ more than age groups do. It cannot tell us whether one worker's earnings will follow this path: it is a single cross-section, so age is confounded with cohort and selection into work.
+**Interpretation:** Average (weighted mean) earnings rise from Rs 141,017 at ages 15–19 to a peak of Rs 352,522 at ages 50–54, then fall to Rs 268,087 at ages 60–64. People gain skills with experience, then earn less near retirement. But the rise from the youngest group to the peak is only 2.5 times, while the 90th percentile is 6.51 times the 10th. So differences between people matter more than age alone. The figure cannot show how one person’s earnings will change: it is a single snapshot, so age is mixed up with differences between generations.
 
 ## Question 4: the makeover
 
 `figures/default.svg` is R's untouched `ggplot(data, aes(x, y)) + geom_point()`, committed before the redesign.
 
-1) Log vertical axis: earnings are right-skewed, so the linear default crushes most earners near the bottom; a log scale makes proportional differences comparable. 2) Transparency (alpha 0.15) and horizontal jitter (+/-0.4 years): 3,396 points at whole-year ages overplot into solid columns; now density is visible. 3) Weighted band means, joined by a line and annotated directly: position on a common scale is the most accurate channel, and conditional means reveal the age pattern the cloud hides. I also removed clutter and added rupee labels and a finding title (data-ink). What the default shows and the redesign hides: the top earner (Rs 12,000,000) towering over everyone on the linear axis, the true extremity of the right tail.
+ 1)Log axis: earnings are right-skewed, so the linear default pushes most earners to the bottom; a log scale makes proportional differences easier to compare.
+ 2) Transparency (alpha 0.15) and horizontal jitter (±0.4 years): 3,396 points at whole-year ages overlap into columns; now density is visible. 
+ 3) Weighted band means joined by a line and labelled directly: position on a common scale is the most accurately read visual channel, and conditional means show the age pattern that the cloud of points hides. I also removed clutter and added rupee labels and a finding title (data-ink). What the default shows and the redesign hides: the top earner (Rs 12,000,000) stands far above everyone on the linear axis, showing how extreme the right tail is. My log axis stops at Rs 10,000,000, so this point is cut off.
 
 ## Question 5: a second language (Python)
 
 25-29 band mean: Rs 245,584 in R and Rs 245,584 in Python (all ten bands agree to the rupee; `scripts/04_second_language.py` checks this against `results/band_table_R.csv`).
 
-Axis defaults differed: matplotlib's log axis prints scientific tick labels with minor ticks, unlike my ggplot rupee labels. I fixed ticks at 10^4-10^7, formatted them as rupees, set the same limits (Rs 10,000-10,000,000), and matched alpha, point size, jitter (+/-0.4) and band edges (right=False). The band tables agree to the rupee; the 25-29 mean is Rs 245,584 in both.
+Axis defaults were different: matplotlibs log axis shows tick labels with minor ticks but I wanted ggplot rupee labels instead. I set the ticks at 10^4 to 10^7 changed them to rupees set the limits (Rs 10,000 to 10,000,000) and made sure the alpha, point size, jitter (+/-0.4) and band edges (right=False) were the same. The band tables match the rupee; the 25-29 mean is Rs 245,584, in both.
 
 ## Definitions and choices
 
