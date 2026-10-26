@@ -77,8 +77,9 @@ Bands 25-29: Rs 245,584; 45-49: Rs 320,463; highest weighted mean: **50-54** (Rs
 
 `figures/default.svg` is R's untouched `ggplot(data, aes(x, y)) + geom_point()`, committed before the redesign.
 
-
-1)Log axis: earnings are right-skewed, so the linear default pushes most earners to the bottom; a log scale makes proportional differences easier to compare. 2) Transparency (alpha 0.15) and horizontal jitter (±0.4 years): 3,396 points at whole-year ages overlap into columns; now density is visible. 3) Weighted band means joined by a line and labelled directly: position on a common scale is the most accurately read visual channel, and conditional means show the age pattern that the cloud of points hides. I also removed clutter and added rupee labels and a finding title (data-ink). What the default shows and the redesign hides: the top earner (Rs 12,000,000) stands far above everyone on the linear axis, showing how extreme the right tail is. My log axis stops at Rs 10,000,000, so this point is cut off.
+ 1)Log axis: earnings are right-skewed, so the linear default pushes most earners to the bottom; a log scale makes proportional differences easier to compare.
+ 2) Transparency (alpha 0.15) and horizontal jitter (±0.4 years): 3,396 points at whole-year ages overlap into columns; now density is visible. 
+ 3) Weighted band means joined by a line and labelled directly: position on a common scale is the most accurately read visual channel, and conditional means show the age pattern that the cloud of points hides. I also removed clutter and added rupee labels and a finding title (data-ink). What the default shows and the redesign hides: the top earner (Rs 12,000,000) stands far above everyone on the linear axis, showing how extreme the right tail is. My log axis stops at Rs 10,000,000, so this point is cut off.
 
 ## Question 5: a second language (Python)
 
